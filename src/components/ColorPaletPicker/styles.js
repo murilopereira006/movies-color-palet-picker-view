@@ -12,6 +12,7 @@ export const IndividualColor = styled.div`
     width: ${props => 400 / props.size}px;
     height: 100%;
     background-color: ${props => props.color};
+    cursor: pointer;
 
     &:hover {
         margin: 0 2.5px;

@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { CopyToClipboard } from 'react-copy-to-clipboard'
 import ColorPicker from '../ColorPickerCursor'
 import { Container, IndividualColor } from './styles';
 
@@ -10,10 +11,12 @@ export default function ColorsRetanguloDisplayer({ arrayOfColors }) {
             {
                 arrayOfColors.map((color, index) => {
                     return (
-                        <>
-                            <ColorPicker tooltipConfig={{ id: `${index + color}`, place: "top", color: `${color}` }} key={'tooltip' + index} />
-                            <IndividualColor data-tooltip-id={`${index + color}`} key={index} color={color} size={arrayOfColors.length + extraSpaceForHoverInteraction} />
-                        </>
+                        <CopyToClipboard key={index} text="hello" onCopy={() => console.log("copiado")} >
+                            <>
+                                <ColorPicker tooltipConfig={{ id: `${index + color}`, place: "top", color: `${color}` }} />
+                                <IndividualColor data-tooltip-id={`${index + color}`} color={color} size={arrayOfColors.length + extraSpaceForHoverInteraction} />
+                            </>
+                        </CopyToClipboard>
                     )
                 })
             }
