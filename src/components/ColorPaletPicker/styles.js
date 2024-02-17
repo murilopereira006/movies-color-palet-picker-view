@@ -29,4 +29,8 @@ export const ButtonPicker = styled.button`
     background-color: transparent;
     cursor: pointer;
     transition: none;
+
+    &:focus, focus-visible {
+        outline: transparent;
+    }
 `;
