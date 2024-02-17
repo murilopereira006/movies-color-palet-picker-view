@@ -18,3 +18,15 @@ export const IndividualColor = styled.div`
         margin: 0 2.5px;
     }
 `;
+
+export const ButtonPicker = styled.button`
+    border-radius: 0px;
+    border: 0px solid transparent;
+    padding: 0;
+    font-size: inherit;
+    font-weight: inherit;
+    font-family: inherit;
+    background-color: transparent;
+    cursor: pointer;
+    transition: none;
+`;
