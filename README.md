@@ -1,7 +1,12 @@
 # movies-color-palet-picker-view
 
+### Propósito
+Este aplicativo recebe arquivos de vídeo e filtra a verdadeira paleta de cores presente no vídeo, retornando o hexadecimal de cada frame.
 
-# React + Vite
+### Método
+O algoritmo que percorre os frames do arquivo também percorre cada pixel do quadro e calcula o valor médio do RGB de cada pixel. Após esse cálculo, o hexadecimal é oferecido como resposta e com um clique você copia para o clipboard.
+
+## React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
