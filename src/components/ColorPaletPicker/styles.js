@@ -1,10 +1,13 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-    width: 400px;
+    width: ${props => props.width}px;    
+    min-width: 400px;
+    max-width: 1000px;
     height: 100px;
     display: flex;
     justify-content: center;
+    border: solid 1px #ccc;
 `;
 
 export const IndividualColor = styled.div`
