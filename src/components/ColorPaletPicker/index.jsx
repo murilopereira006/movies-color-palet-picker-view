@@ -6,26 +6,22 @@ import { Container, IndividualColor, ButtonPicker } from './styles';
 const extraSpaceForHoverInteraction = 2;
 
 export default function ColorsRetanguloDisplayer({ arrayOfColors }) {
-    let numberOfContainers = (arrayOfColors.length % 1000);
-
-    for (let index = 0; index <= numberOfContainers; index++) {
-        return (
-            <Container width={arrayOfColors.length}>
-                {
-                    arrayOfColors.map((color, index) => {
-                        return (
-                            <CopyToClipboard key={index} text={color} onCopy={() => console.log("copiado")} >
-                                <ButtonPicker >
-                                    <ColorPicker tooltipConfig={{ id: `${index + color}`, place: "top", color: `${color}` }} />
-                                    <IndividualColor data-tooltip-id={`${index + color}`} color={color} size={arrayOfColors.length + extraSpaceForHoverInteraction} />
-                                </ButtonPicker>
-                            </CopyToClipboard>
-                        )
-                    })
-                }
-            </Container >
-        );
-    }
+    return (
+        <Container width={arrayOfColors.length}>
+            {
+                arrayOfColors.map((color, index) => {
+                    return (
+                        <CopyToClipboard key={index} text={color} onCopy={() => console.log("copiado")} >
+                            <ButtonPicker >
+                                <ColorPicker tooltipConfig={{ id: `${index + color}`, place: "top", color: `${color}` }} />
+                                <IndividualColor data-tooltip-id={`${index + color}`} color={color} size={arrayOfColors.length + extraSpaceForHoverInteraction} />
+                            </ButtonPicker>
+                        </CopyToClipboard>
+                    )
+                })
+            }
+        </Container >
+    );
 }
 
 ColorsRetanguloDisplayer.propTypes = {
