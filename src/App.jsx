@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import './App.css'
 import ColorsRetanguloDisplayer from "./components/ColorPaletPicker"
 
@@ -30,40 +31,21 @@ const coresHex400 = [
     "#fafafa", "#fbfbfb", "#fcfcfc", "#fdfdfd", "#fefefe", "#ffffff"
 ];
 
-let tempArray = []
-
 const renderRetanguloDisplay = (colorsArray) => {
     return <ColorsRetanguloDisplayer arrayOfColors={colorsArray} />
 }
 
-// const callRender = (bigColorsArray) => {
-//     let tempArray = []
-//     return bigColorsArray.map((color) => {
-//         tempArray.push(color)
-//         if (tempArray.length > 400) {
-//             console.log(tempArray.length)
-//             renderRetanguloDisplay(tempArray)
-//             tempArray = []
-//         }
-//     })
-// }
 
 function App() {
+    const [arraySegmentes, setArraySegmentes] = useState()
+
     return (
         <main className="card">
             {
-                // callRender(coresHex400)
-
-                coresHex400.map((color) => {
-                    tempArray.push(color)
-                    if (tempArray.length > 100) {
-                        console.log(tempArray.length)
-                        renderRetanguloDisplay(tempArray)
-                        tempArray = []
-                    }
-                })
+                // [...arraySegmentes].map((array) => {
+                renderRetanguloDisplay(coresHex400)
+                // })
             }
-
         </main>
     )
 }
