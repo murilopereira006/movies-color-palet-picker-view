@@ -30,29 +30,42 @@ const coresHex400 = [
     "#fafafa", "#fbfbfb", "#fcfcfc", "#fdfdfd", "#fefefe", "#ffffff"
 ];
 
+let tempArray = []
+
 const renderRetanguloDisplay = (colorsArray) => {
     return <ColorsRetanguloDisplayer arrayOfColors={colorsArray} />
 }
 
-const callRender = (bigColorsArray) => {
-    return renderRetanguloDisplay(bigColorsArray)
-}
+// const callRender = (bigColorsArray) => {
+//     let tempArray = []
+//     return bigColorsArray.map((color) => {
+//         tempArray.push(color)
+//         if (tempArray.length > 400) {
+//             console.log(tempArray.length)
+//             renderRetanguloDisplay(tempArray)
+//             tempArray = []
+//         }
+//     })
+// }
 
 function App() {
     return (
         <main className="card">
             {
-                callRender(coresHex400)
+                // callRender(coresHex400)
+
+                coresHex400.map((color) => {
+                    tempArray.push(color)
+                    if (tempArray.length > 100) {
+                        console.log(tempArray.length)
+                        renderRetanguloDisplay(tempArray)
+                        tempArray = []
+                    }
+                })
             }
+
         </main>
     )
 }
 
-export default App
-
-// let index = 0;
-// const numberOfContainers = (arrayOfColors.length % 100);
-
-// while (index <= numberOfContainers) {
-//     index++;
-//     console.log(index)
+export default App;
