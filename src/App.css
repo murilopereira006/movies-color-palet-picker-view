@@ -32,3 +32,11 @@ input[type="text"] {
 input[type="file"] {
   display: none;
 }
+
+label {
+  cursor: pointer;
+}
+
+span {
+  cursor: default;
+}

@@ -88,13 +88,14 @@ function App() {
         <main className="card">
             <h1>Identificador de paleta de cores de producoes audiovisuais</h1>
             <h3>Adicionei aqui seu video a ser dissecado:</h3>
-            {/* <input type='file' placeholder='Selecione seu video' accept='video/*' onChange={e => console.log(e.target.files[0])} /> */}
+
             <div className="drop-area" onDrop={handleDrop} onDragOver={(e) => e.preventDefault()}>
-                <span className="drop-message">Arraste e solte um arquivo de vídeo aqui</span>
+                <span className="drop-message"><strong><label htmlFor="file-input">Clique</label></strong> ou arraste e solte um arquivo de vídeo aqui</span>
                 <input type="file" id="file-input" accept="video/*" onChange={handleFileInputChange} />
             </div>
+
             <div>
-                <input type="text" placeholder="Cole URL do vídeo aqui" onChange={handleVideoLink} />
+                <input type="text" placeholder="Ou copie e cole aqui a URL do Youtube" onChange={handleVideoLink} />
             </div>
             {currVideo && (
                 <div>
