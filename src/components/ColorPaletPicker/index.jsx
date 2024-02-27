@@ -3,7 +3,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard'
 import ColorPicker from '../ColorPickerCursor'
 import { Container, IndividualColor, ButtonPicker } from './styles';
 
-const extraSpaceForHoverInteraction = 2;
+const extraSpaceForHoverInteraction = 0;
 
 export default function ColorsRetanguloDisplayer({ arrayOfColors }) {
     return (

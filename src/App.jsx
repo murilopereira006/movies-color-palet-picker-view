@@ -32,23 +32,20 @@ const colorsHex400 = [
 
 const segmentingArray = (bigArray, itemsLimit) => {
     let temp = []
-    for (let index = 0; index <= bigArray.length; index++) {
+    for (let index = 0; index < bigArray.length; index++) {
         temp.push(bigArray[index])
         if (temp.length === itemsLimit) {
-            console.log(index)
             arraySegmentes.push(temp)
             temp = []
         }
-
     }
-    return console.log(arraySegmentes)
+    return arraySegmentes.push(temp)
 }
 
 let arraySegmentes = []
+segmentingArray(colorsHex400, 100)
 
 function App() {
-    segmentingArray(colorsHex400, 100)
-
     return (
         <main className="card">
             {
