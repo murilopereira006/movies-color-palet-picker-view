@@ -1,8 +1,7 @@
-import { useState } from 'react'
 import './App.css'
 import ColorsRetanguloDisplayer from "./components/ColorPaletPicker"
 
-const coresHex400 = [
+const colorsHex400 = [
     "#000000", "#010101", "#020202", "#030303", "#040404", "#050505", "#060606", "#070707", "#080808", "#090909",
     "#0a0a0a", "#0b0b0b", "#0c0c0c", "#0d0d0d", "#0e0e0e", "#0f0f0f", "#101010", "#111111", "#121212", "#131313",
     "#141414", "#151515", "#161616", "#171717", "#181818", "#191919", "#1a1a1a", "#1b1b1b", "#1c1c1c", "#1d1d1d",
@@ -31,20 +30,29 @@ const coresHex400 = [
     "#fafafa", "#fbfbfb", "#fcfcfc", "#fdfdfd", "#fefefe", "#ffffff"
 ];
 
-const renderRetanguloDisplay = (colorsArray) => {
-    return <ColorsRetanguloDisplayer arrayOfColors={colorsArray} />
+const segmentingArray = (bigArray, itemsLimit) => {
+    let temp = []
+    for (let index = 0; index <= bigArray.length; index++) {
+        temp.push(bigArray[index])
+        if (temp.length === itemsLimit) {
+            console.log(index)
+            arraySegmentes.push(temp)
+            temp = []
+        }
+
+    }
+    return console.log(arraySegmentes)
 }
 
+let arraySegmentes = []
 
 function App() {
-    const [arraySegmentes, setArraySegmentes] = useState()
+    segmentingArray(colorsHex400, 100)
 
     return (
         <main className="card">
             {
-                // [...arraySegmentes].map((array) => {
-                renderRetanguloDisplay(coresHex400)
-                // })
+                arraySegmentes.map((array, index) => <ColorsRetanguloDisplayer key={index} arrayOfColors={array} />)
             }
         </main>
     )
