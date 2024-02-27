@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './App.css'
 import ColorsRetanguloDisplayer from "./components/ColorPaletPicker"
 
@@ -46,8 +47,65 @@ let arraySegmentes = []
 segmentingArray(colorsHex400, 100)
 
 function App() {
+    const [currVideo, setCurrVideo] = useState(null);
+
+    const handleVideoLink = (e) => {
+        e.preventDefault();
+        const videoLink = e.target.value;
+        if (isValidYoutubeLink(videoLink)) {
+            setCurrVideo(videoLink);
+        } else {
+            alert('Por favor, insira um link válido do YouTube.');
+        }
+    };
+
+    const isValidYoutubeLink = (link) => {
+        // Regex para validar links do YouTube
+        const youtubeRegex = /^(http(s)?:\/\/)?((w){3}.)?youtu(be|.be)?(\.com)?\/.+/;
+        return youtubeRegex.test(link);
+    };
+
+    const handleFileInputChange = (e) => {
+        const file = e.target.files[0];
+        handleVideo(file);
+    };
+
+    const handleDrop = (e) => {
+        e.preventDefault();
+        const file = e.dataTransfer.files[0];
+        handleVideo(file);
+    };
+
+    const handleVideo = (file) => {
+        if (file.type.startsWith('video/')) {
+            setCurrVideo(URL.createObjectURL(file));
+        } else {
+            alert('Por favor, selecione um arquivo de vídeo.');
+        }
+    };
+
     return (
         <main className="card">
+            <h1>Identificador de paleta de cores de producoes audiovisuais</h1>
+            <h3>Adicionei aqui seu video a ser dissecado:</h3>
+            {/* <input type='file' placeholder='Selecione seu video' accept='video/*' onChange={e => console.log(e.target.files[0])} /> */}
+            <div className="drop-area" onDrop={handleDrop} onDragOver={(e) => e.preventDefault()}>
+                <span className="drop-message">Arraste e solte um arquivo de vídeo aqui</span>
+                <input type="file" id="file-input" accept="video/*" onChange={handleFileInputChange} />
+            </div>
+            <div>
+                <input type="text" placeholder="Cole URL do vídeo aqui" onChange={handleVideoLink} />
+            </div>
+            {currVideo && (
+                <div>
+                    <video controls>
+                        <source src={currVideo} type="video/mp4" />
+                        Seu navegador não suporta a reprodução de vídeos.
+                    </video>
+                </div>
+            )}
+
+
             {
                 arraySegmentes.map((array, index) => <ColorsRetanguloDisplayer key={index} arrayOfColors={array} />)
             }

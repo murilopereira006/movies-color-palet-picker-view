@@ -8,6 +8,7 @@ export const Container = styled.div`
     display: flex;
     justify-content: center;
     border: solid 1px #ccc;
+    margin: 0 auto;
 `;
 
 export const IndividualColor = styled.div`
