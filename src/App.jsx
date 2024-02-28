@@ -50,28 +50,30 @@ let arraySegmentes = []
 segmentingArray(colorsHex400, 100)
 
 function App() {
-    useEffect(() => {
-        async () => {
-            try {
-                const formData = new FormData();
-                formData.append('video', currVideo);
-
-                const response = await axios.post(backendUrl, formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
-                });
-                console.log('Video enviado com sucesso!', response.data);
-            } catch (error) {
-                console.error('Erro ao enviar o vídeo:', error);
-            }
-        }
-
-        fetchData();
-    }, [currVideo])
-
     const [currVideo, setCurrVideo] = useState(null)
     const [paletColorsArray, setPaletColorsArray] = useState(null)
+
+    useEffect(() => {
+        if (currVideo) {
+            async () => {
+                try {
+                    const formData = new FormData();
+                    formData.append('video', currVideo);
+
+                    const response = await axios.post(backendUrl, formData, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    });
+                    console.log('Video enviado com sucesso!', response.data);
+                } catch (error) {
+                    console.error('Erro ao enviar o vídeo:', error);
+                }
+            }
+
+            fetchData();
+        }
+    }, [currVideo])
 
     const fetchData = async () => {
         try {
