@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import './App.css'
 import ColorsRetanguloDisplayer from "./components/ColorPaletPicker"
 
@@ -31,6 +32,8 @@ const colorsHex400 = [
     "#fafafa", "#fbfbfb", "#fcfcfc", "#fdfdfd", "#fefefe", "#ffffff"
 ];
 
+const backendUrl = import.meta.env.BACKEND_URL
+
 const segmentingArray = (bigArray, itemsLimit) => {
     let temp = []
     for (let index = 0; index < bigArray.length; index++) {
@@ -47,7 +50,37 @@ let arraySegmentes = []
 segmentingArray(colorsHex400, 100)
 
 function App() {
-    const [currVideo, setCurrVideo] = useState(null);
+    useEffect(() => {
+        async () => {
+            try {
+                const formData = new FormData();
+                formData.append('video', currVideo);
+
+                const response = await axios.post(backendUrl, formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                });
+                console.log('Video enviado com sucesso!', response.data);
+            } catch (error) {
+                console.error('Erro ao enviar o vídeo:', error);
+            }
+        }
+
+        fetchData();
+    }, [currVideo])
+
+    const [currVideo, setCurrVideo] = useState(null)
+    const [paletColorsArray, setPaletColorsArray] = useState(null)
+
+    const fetchData = async () => {
+        try {
+            const response = await axios.get(backendUrl);
+            setPaletColorsArray(response.data);
+        } catch (error) {
+            console.error('Erro ao buscar dados:', error);
+        }
+    };
 
     const handleVideoLink = (e) => {
         e.preventDefault();
@@ -97,18 +130,10 @@ function App() {
             <div>
                 <input type="text" placeholder="Ou copie e cole aqui a URL do Youtube" onChange={handleVideoLink} />
             </div>
-            {currVideo && (
-                <div>
-                    <video controls>
-                        <source src={currVideo} type="video/mp4" />
-                        Seu navegador não suporta a reprodução de vídeos.
-                    </video>
-                </div>
-            )}
 
 
             {
-                arraySegmentes.map((array, index) => <ColorsRetanguloDisplayer key={index} arrayOfColors={array} />)
+                paletColorsArray && arraySegmentes.map((array, index) => <ColorsRetanguloDisplayer key={index} arrayOfColors={array} />)
             }
         </main>
     )
