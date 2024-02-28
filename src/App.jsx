@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css'
 import ColorsRetanguloDisplayer from "./components/ColorPaletPicker"
+import ModelCaller from "./components/ModelCaller"
 import NeilArmstrong from "./assets/3dModel/neilArmstrong/index.html"
 import OldVintageFilmCamera from "./assets/3dModel/oldVintageFilmCamera/index.html"
 
@@ -106,9 +107,9 @@ function App() {
                 <input type="text" placeholder="Ou copie e cole aqui a URL do Youtube" onChange={handleVideoLink} />
             </div>
 
-            <iframe src={NeilArmstrong} width="400px" height="200px" ></iframe>
+            <ModelCaller model={OldVintageFilmCamera} />
+            <ModelCaller model={NeilArmstrong} />
 
-            <iframe src={OldVintageFilmCamera} width="400px" height="200px" ></iframe>
             {
                 paletColorsArray && segmentingArray(paletColorsArray, 100).map((array, index) => <ColorsRetanguloDisplayer key={index} arrayOfColors={array} />)
             }
