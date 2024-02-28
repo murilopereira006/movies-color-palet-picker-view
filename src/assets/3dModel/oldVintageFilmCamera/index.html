@@ -1,0 +1,10 @@
+<!-- Import the component -->
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+<model-viewer src="old_vintage_film_camera.glb" ar ar-modes="webxr scene-viewer quick-look" tone-mapping="commerce" poster="poster.webp" shadow-intensity="0.5" exposure="0.5" shadow-softness="0.75" auto-rotate>
+    <div class="progress-bar hide" slot="progress-bar">
+        <div class="update-bar"></div>
+    </div>
+    <button slot="ar-button" id="ar-button">
+        View in your space
+    </button>
+</model-viewer>
